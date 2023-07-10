@@ -13,6 +13,17 @@ public class TaxiService {
 	 * @return
 	 */
 	public void validate(Ride ride) throws InvalidRideException {
+		Driver driver = ride.getDriver();
+		Passenger[] passengers = ride.getPassengers();
+		if (driver == null) {
+			throw new InvalidRideException();
+		} else if (passengers == null) {
+			throw new InvalidRideException();
+		}else if (passengers.length<1 ){
+			throw new InvalidRideException();
+		} else if (passengers.length>4){
+			throw new InvalidRideException();
+		}
 
 	}
 	
@@ -27,7 +38,16 @@ public class TaxiService {
 	 * @return
 	 */
 	public int business(Ride ride) {
-		return 0;
+		Passenger[] passenger = ride.getPassengers();
+			int num = 0;
+			 for (Passenger passenge : passenger) {
+				 String type = passenge.getAccountType();
+				 if (type.equals("BUSINESS")){
+					 num++;
+				 }
+			 }
+
+		return num;
 	}
 	
 }
