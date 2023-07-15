@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
 *  There is nothing required to do in this class. 
 */
@@ -18,4 +20,15 @@ public abstract class User {
 		this.email = email;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof User user)) return false;
+		return Objects.equals(getName(), user.getName()) && Objects.equals(getEmail(), user.getEmail());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getName(), getEmail());
+	}
 }
